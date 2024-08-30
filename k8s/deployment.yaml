@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mock-pagamentos
+  labels:
+    app: mock-pagamentos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mock-pagamentos
+  template:
+    metadata:
+      labels:
+        app: mock-pagamentos
+    spec:
+      containers:
+        - name: mock-pagamentos
+          image: mblopes/tech-challeng-mock-pagamentos:latest
+          ports:
+            - containerPort: 9000
