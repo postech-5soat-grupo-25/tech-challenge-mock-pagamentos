@@ -5,9 +5,10 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: mock-pagamentos-pod
+    app: mock-pagamentos
   ports:
     - protocol: TCP
       port: 9000
       targetPort: 9000
       nodePort: 31300
+                  

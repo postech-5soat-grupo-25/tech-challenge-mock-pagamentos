@@ -15,7 +15,7 @@ spec:
         app: mock-pagamentos
     spec:
       containers:
-        - name: mock-pagamentos
-          image: mblopes/tech-challeng-mock-pagamentos:latest
+        - name: mock-pagamentos-container
+          image: mblopes/tech-challenge-mock-pagamentos:latest
           ports:
             - containerPort: 9000

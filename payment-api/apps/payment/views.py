@@ -8,7 +8,6 @@ from rest_framework.views import APIView
 
 from .serializers import ErrorSerializer, PaymentSerializer
 
-
 def approve_payment(serializer, payment_code):
     try:
         response = requests.post(
@@ -18,9 +17,10 @@ def approve_payment(serializer, payment_code):
 
         print(f"Response: {response}")
         response.raise_for_status()
-    except Exception as e:
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
         error_serializer = ErrorSerializer({"message": "failed", "error": str(e)})
-
+        return error_serializer.data  
 
 class PaymentView(APIView):
     def post(self, request):
@@ -43,4 +43,5 @@ class PaymentView(APIView):
         except Exception as e:
             error_serializer = ErrorSerializer({"message": "failed", "error": str(e)})
             return Response(error_serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        
         return Response(status=status.HTTP_400_BAD_REQUEST)
